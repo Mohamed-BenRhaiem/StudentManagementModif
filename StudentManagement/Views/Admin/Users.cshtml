@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityUser>
+
+<form asp-controller="Admin" asp-action="addUser" method="post">
+    <input type="hidden" name="roleName" value="@ViewBag.RoleName" />
+    <h2>Users in Role: @ViewBag.RoleName</h2>
+<select name="email">
+    @foreach (var user in Model.ToList())
+    {
+        <option value="@user.Email">@user.Email</option>
+    }
+</select>
+
+<button type="submit" class="btn btn-primary">Confirm</button>
+
+</form>

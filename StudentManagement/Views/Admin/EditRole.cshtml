@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model StudentManagement.Models.ViewModels.EditRoleViewModel
+
+@{
+    ViewBag.Title = "Edit Role";
+}
+
+<form asp-controller="Admin" asp-action="EditRole" asp-route-id="@Model.Id" method="post" class="card mb-3">
+    <input class="input-form" value="@Model.Id" readonly />
+    <input class="input-form" name="RoleName" value="@Model.RoleName" />
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary"> Save Changes </button>
+    </div>
+</form>
+
+<form asp-controller="Admin" asp-action="AddUserToRole" asp-route-roleId="@Model.Id" method="post" class="card mb-3">
+    <div class="card-header"> Role Id : @Model.Id </div>
+    <h3>Users in this role</h3>
+    <ul>
+
+    @foreach (var user in Model.Users)
+    {
+        <li class="list-item">@user</li>
+    }
+
+    </ul>
+    <hr />
+    <h3>Add User to Role</h3>
+    <!-- Assuming you have a dropdown list of users to add -->
+  
+
+    <div class="card-footer">
+        <a asp-controller="Admin" asp-action="Users" asp-route-RoleName="@Model.RoleName" class="btn btn-primary"> Add User to Role </a>
+    </div>
+</form>
